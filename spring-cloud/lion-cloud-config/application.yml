@@ -37,10 +37,10 @@ spring:
   jackson:
     time-zone: GMT+8
   rabbitmq:
-    host: 192.168.20.109
+    host: 127.0.0.1
     port: 5672
-    username: muyu
-    password: 123456
+    username: guest
+    password: guest
   sleuth:
     sampler:
       percentage: 1.0 # 配置输出spans的百分比(默认10%)
