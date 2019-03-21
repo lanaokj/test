@@ -1,0 +1,160 @@
+hystrix:
+  propagate:
+    request-attribute:
+      enabled: true
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: THREAD
+    # 设置独立的hystrix配置信息
+    xmutca-cloud-svca-service:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000 # 用来设置thread和semaphore两种隔离策略的超时时间，默认值是1000
+
+# 全局的设置ribbon的信息
+ribbon:
+  ReadTimeout: 5000 # 请求处理的超时时间
+  ConnectTimeout: 5000 # 请求连接的超时时间
+  MaxAutoRetries: 1 #对当前实例的重试次数
+  MaxAutoRetriesNextServer: 2 # 切换实例的重试次数
+  OkToRetryOnAllOperations: false # 对所有操作请求都进行重试， 意思是只会对get方法进行重试
+
+
+# 设置独立ribbon的配置信息
+xmutca-cloud-svca-service:
+  ribbon:
+    ReadTimeout: 5000 # 请求处理的超时时间
+    ConnectTimeout: 5000 # 请求连接的超时时间
+    MaxAutoRetries: 1 #对当前实例的重试次数
+    MaxAutoRetriesNextServer: 2 # 切换实例的重试次数
+    OkToRetryOnAllOperations: false # 对所有操作请求都进行重试
+    # listOfServers: # 特定的服务器列表
+
+spring:
+  jackson:
+    time-zone: GMT+8
+  rabbitmq:
+    host: 192.168.20.109
+    port: 5672
+    username: muyu
+    password: 123456
+  sleuth:
+    sampler:
+      percentage: 1.0 # 配置输出spans的百分比(默认10%)
+    integration: # 建立span来发布或订阅事件
+      enabled: false # 设置spring.sleuth.integration.enabled为false可以使Spring Integration无效
+    scheduled:
+      skip-pattern: "^org.*HystrixStreamTask$" # 过滤地址，如果你在环境中添加了ManagementServerProperties，你的contextPath值会附加到过滤配置上。
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    druid:
+      stat-view-servlet:
+        enabled: false
+      filters: stat,wall,slf4j
+      initial-size: 20
+      min-idle: 20
+      max-active: 30
+      validation-query: SELECT 'x' FROM DUAL
+      validation-query-timeout: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+
+# tomcat调优参数
+server:
+  tomcat:
+    max-threads: 128 # Maximum amount of worker threads.
+    min-spare-threads: 64 # Minimum amount of worker threads
+
+# hystrix如果不打开，可能连hystrix面板都看不到， compression开启gzip压缩
+feign:
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
+  compression:
+    request:
+      enabled: true
+      mime-types: text/xml,application/xml,application/json
+      min-request-size: 2048
+    response:
+      enabled: true
+  hystrix:
+    enabled: true
+
+# 系统配置
+system:
+  sequence:
+    workerId: 0 # id, 0 - 31
+    dataCenterId: 0 # ID, 0 - 31
+    enabled: true
+  token:
+    signHeader: X-Open-Sign
+    merchantHeader: X-Open-Merchant
+    timestampHeader: X-Open-Timestamp
+    authHeader: Authorization
+    loginHeader: X-Auth-Login
+    clientHeader: X-Auth-Token
+    oemHeader: X-Auth-OEM
+    ticketHeader:  X-Auth-Ticket
+    ticketCaptchaHeader: X-Auth-Ticket-Captcha
+    actuatorHeader: X-Auth-Actuator
+    refereeHeader: X-Share-Referee
+    recommendHeader: X-Share-Recommend
+    authResourceHeader: X-Req-Auth-Resource
+    authRuleHeader: X-Req-Auth-Rule
+    authRuleSkipHeader: X-Req-Auth-Rule-Skip
+    actuatorSecret: 123456
+    expiration: 2592000
+    cacheSecond: 300
+
+# 日志配置
+logging:
+  file: ${spring.application.name}-logger
+
+# 任务调度
+xxl:
+  job:
+    appName: ${spring.application.name}
+    registries: http://192.168.20.118:8080/xxl-job-admin-1.9.1-SNAPSHOT
+
+# 文档设置
+swagger:
+  base-package: com.xmutca.cloud
+  exclude-path: /error/**
+  global-operation-parameters[0]:
+    name: ${system.token.clientHeader}
+    description: 客户令牌
+    modelRef: string
+    parameterType: header
+    required: false
+  global-operation-parameters[1]:
+    name: ${system.token.ticketHeader}
+    description: 表单令牌
+    modelRef: string
+    parameterType: header
+    required: false
+  global-operation-parameters[2]:
+    name: User-Agent
+    description: 浏览器类型
+    modelRef: string
+    parameterType: header
+    required: false
+  global-operation-parameters[3]:
+    name: ${system.token.oemHeader}
+    description: 站点令牌
+    modelRef: long
+    parameterType: header
+    required: false
+  global-operation-parameters[4]:
+    name: ${system.token.ticketCaptchaHeader}
+    description: 表单令牌验证码
+    modelRef: string
+    parameterType: header
+    required: false
+  contact:
+    name: 彭伟煌
+    email: 173186915@qq.com
+    url: https://gitee.com/imethsoft

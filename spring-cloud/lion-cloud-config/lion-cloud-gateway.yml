@@ -1,0 +1,92 @@
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000 # 熔断时间, 断路器的超时时间需要大于ribbon的超时时间，不然不会触发重试, ribbon是重试机制，重试时间超过断路器的时间即中止
+
+ribbon:
+  ReadTimeout: 30000 # 请求处理的超时时间
+  ConnectTimeout: 30000 # 请求连接的超时时间
+  MaxAutoRetries: 1 #对当前实例的重试次数
+  MaxAutoRetriesNextServer: 2 # 切换实例的重试次数
+  OkToRetryOnAllOperations: false # 对所有操作请求都进行重试
+
+zuul:
+  host:
+    connect-timeout-millis: 40000 # 连接超时时间
+    socket-timeout-millis: 40000 # 超时时间
+  retryable: true
+  ignoredServices: '*'
+  sensitive-headers:
+  custom-sensitive-headers: true
+  prefix:
+  ratelimit:
+    key-prefix: lion-cloud-gateway
+    enabled: true
+    repository: REDIS
+    behind-proxy: true
+    default-policy: #optional - will apply unless specific policy exists
+      limit: 100 #optional - request number limit per refresh interval window
+     # quota: 1 #optional - request time limit per refresh interval window (in seconds)
+      refresh-interval: 60 #default value (in seconds)
+      type: #optional
+        - user
+        - origin
+        - url
+  routes:
+    lion-cloud-service-auth:
+      path: /auth/**
+    lion-cloud-service-payment:
+      path: /payment/**
+    lion-cloud-service-user:
+      path: /user/**
+    lion-cloud-service-sso:
+      path: /sso/**
+      serviceId: lion-cloud-service-user
+    lion-cloud-service-ticket:
+      path: /ticket/**
+    lion-cloud-service-loan:
+      path: /loan/**
+    lion-cloud-service-oem:
+      path: /oem/**
+    lion-cloud-service-treatment:
+      path: /treatment/**
+    lion-cloud-service-compound:
+      path: /compound/**
+    lion-cloud-service-activity:
+      path: /activity/**
+    lion-cloud-service-message:
+      path: /message/**
+    lion-cloud-service-conversion:
+      path: /conversion/**
+    lion-cloud-service-wechat:
+      path: /wechat/**
+    lion-cloud-service-article:
+      path: /article/**
+    lion-cloud-service-apply-card:
+      path: /credit/**
+    lion-cloud-service-draw:
+      path: /draw/**
+    lion-cloud-service-bank:
+      path: /bank/**
+    lion-cloud-service-verify:
+      path: /verify/**
+    lion-cloud-service-evaluate:
+      path: /evaluate/**
+    lion-cloud-service-measure:
+      path: /measure/**
+    lion-cloud-service-pos:
+      path: /pos/**
+    lion-cloud-service-pos-match:
+      path: /posMatch/**
+    lion-cloud-service-pos-match-test:
+      path: /posTest/**
+
+
+system:
+  openProp:
+    timeFrame: 120
+  token:
+    ignorePath: /**/api/**, /sso/login/**, /**/open/**, /**/share/**, /ticket/**, /payment/login/**, /**/swagger-ui.html, /**/webjars/**, /**/v2/api-docs/**, /**/swagger-resources/**

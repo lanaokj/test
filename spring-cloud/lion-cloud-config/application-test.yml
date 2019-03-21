@@ -1,0 +1,13 @@
+# 文档设置
+swagger:
+  enabled: true
+
+flyway:
+  enabled: false
+
+spring:
+  rabbitmq:
+    host: haproxy
+    port: 5672
+    username: guest
+    password: guest

@@ -1,0 +1,7 @@
+# 文档设置
+swagger:
+  enabled: true
+
+
+flyway:
+  enabled: false
