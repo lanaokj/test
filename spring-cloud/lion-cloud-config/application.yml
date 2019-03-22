@@ -120,9 +120,8 @@ xxl:
     appName: ${spring.application.name}
     registries: http://localhost:8080/xxl-job-admin
     port: 9999
-    logPath: /data/applogs/xxl-job/jobhandler
+    logPath: '/data/applogs/xxl-job/jobhandler'
     logRetentionDays: -1
-    accessToken:
 
 # 文档设置
 swagger:
