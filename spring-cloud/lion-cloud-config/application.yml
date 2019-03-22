@@ -119,6 +119,7 @@ xxl:
   job:
     appName: ${spring.application.name}
     registries: http://localhost:8080/xxl-job-admin
+    port: 9999
 
 # 文档设置
 swagger:
