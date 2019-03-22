@@ -118,7 +118,7 @@ logging:
 xxl:
   job:
     appName: ${spring.application.name}
-    registries: http://localhost:8080/xxl-job-admin/
+    registries: http://localhost:8080/xxl-job-admin
 
 # 文档设置
 swagger:
