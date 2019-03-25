@@ -118,7 +118,7 @@ logging:
 xxl:
   job:
     appName: ${spring.application.name}
-    registries: http://localhost:8080/xxl-job-admin
+    registries: http://127.0.0.1:8080/xxl-job-admin
     port: 9999
 
 # 文档设置
