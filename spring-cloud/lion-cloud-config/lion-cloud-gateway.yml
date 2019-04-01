@@ -23,7 +23,7 @@ zuul:
   custom-sensitive-headers: true
   prefix:
   ratelimit:
-    key-prefix: lion-cloud-gateway
+    key-prefix: cloud-gateway
     enabled: true
     repository: REDIS
     behind-proxy: true
@@ -36,52 +36,52 @@ zuul:
         - origin
         - url
   routes:
-    lion-cloud-service-auth:
+    cloud-service-auth:
       path: /auth/**
-    lion-cloud-service-payment:
+    cloud-service-payment:
       path: /payment/**
-    lion-cloud-service-user:
+    cloud-service-user:
       path: /user/**
-    lion-cloud-service-sso:
+    cloud-service-sso:
       path: /sso/**
-      serviceId: lion-cloud-service-user
-    lion-cloud-service-ticket:
+      serviceId: cloud-service-user
+    cloud-service-ticket:
       path: /ticket/**
-    lion-cloud-service-loan:
+    cloud-service-loan:
       path: /loan/**
-    lion-cloud-service-oem:
+    cloud-service-oem:
       path: /oem/**
-    lion-cloud-service-treatment:
+    cloud-service-treatment:
       path: /treatment/**
-    lion-cloud-service-compound:
+    cloud-service-compound:
       path: /compound/**
-    lion-cloud-service-activity:
+    cloud-service-activity:
       path: /activity/**
-    lion-cloud-service-message:
+    cloud-service-message:
       path: /message/**
-    lion-cloud-service-conversion:
+    cloud-service-conversion:
       path: /conversion/**
-    lion-cloud-service-wechat:
+    cloud-service-wechat:
       path: /wechat/**
-    lion-cloud-service-article:
+    cloud-service-article:
       path: /article/**
-    lion-cloud-service-apply-card:
+    cloud-service-apply-card:
       path: /credit/**
-    lion-cloud-service-draw:
+    cloud-service-draw:
       path: /draw/**
-    lion-cloud-service-bank:
+    cloud-service-bank:
       path: /bank/**
-    lion-cloud-service-verify:
+    cloud-service-verify:
       path: /verify/**
-    lion-cloud-service-evaluate:
+    cloud-service-evaluate:
       path: /evaluate/**
-    lion-cloud-service-measure:
+    cloud-service-measure:
       path: /measure/**
-    lion-cloud-service-pos:
+    cloud-service-pos:
       path: /pos/**
-    lion-cloud-service-pos-match:
+    cloud-service-pos-match:
       path: /posMatch/**
-    lion-cloud-service-pos-match-test:
+    cloud-service-pos-match-test:
       path: /posTest/**
 
 
