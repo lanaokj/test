@@ -38,8 +38,6 @@ zuul:
   routes:
     cloud-service-auth:
       path: /auth/**
-    cloud-service-payment:
-      path: /payment/**
     cloud-service-user:
       path: /user/**
     cloud-service-sso:
@@ -51,38 +49,8 @@ zuul:
       path: /loan/**
     cloud-service-oem:
       path: /oem/**
-    cloud-service-treatment:
-      path: /treatment/**
-    cloud-service-compound:
-      path: /compound/**
-    cloud-service-activity:
-      path: /activity/**
-    cloud-service-message:
-      path: /message/**
-    cloud-service-conversion:
-      path: /conversion/**
     cloud-service-wechat:
       path: /wechat/**
-    cloud-service-article:
-      path: /article/**
-    cloud-service-apply-card:
-      path: /credit/**
-    cloud-service-draw:
-      path: /draw/**
-    cloud-service-bank:
-      path: /bank/**
-    cloud-service-verify:
-      path: /verify/**
-    cloud-service-evaluate:
-      path: /evaluate/**
-    cloud-service-measure:
-      path: /measure/**
-    cloud-service-pos:
-      path: /pos/**
-    cloud-service-pos-match:
-      path: /posMatch/**
-    cloud-service-pos-match-test:
-      path: /posTest/**
 
 
 system:
