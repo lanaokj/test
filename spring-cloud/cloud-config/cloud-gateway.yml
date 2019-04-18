@@ -43,14 +43,14 @@ zuul:
     cloud-service-sso:
       path: /sso/**
       serviceId: cloud-service-user
-    cloud-service-ticket:
-      path: /ticket/**
-    cloud-service-loan:
-      path: /loan/**
-    cloud-service-oem:
-      path: /oem/**
-    cloud-service-wechat:
-      path: /wechat/**
+    cloud-service-pay:
+      path: /pay/**
+    cloud-service-profit:
+      path: /profit/**
+    cloud-service-order:
+      path: /order/**
+    cloud-service-notify:
+      path: /notify/**
 
 
 system:
