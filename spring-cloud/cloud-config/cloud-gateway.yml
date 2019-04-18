@@ -45,16 +45,12 @@ zuul:
       serviceId: cloud-service-user
     cloud-service-pay:
       path: /pay/**
-      serviceId: cloud-service-pay
     cloud-service-profit:
       path: /profit/**
-      serviceId: cloud-service-profit
     cloud-service-order:
       path: /order/**
-      serviceId: cloud-service-order
     cloud-service-notify:
       path: /notify/**
-      serviceId: cloud-service-notify
 
 
 system:
