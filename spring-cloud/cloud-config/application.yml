@@ -36,11 +36,6 @@ xmutca-cloud-svca-service:
 spring:
   jackson:
     time-zone: GMT+8
-  rabbitmq:
-    host: 127.0.0.1
-    port: 5672
-    username: guest
-    password: guest
   sleuth:
     sampler:
       percentage: 1.0 # 配置输出spans的百分比(默认10%)
