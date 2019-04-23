@@ -4,7 +4,7 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 60000 # 熔断时间, 断路器的超时时间需要大于ribbon的超时时间，不然不会触发重试, ribbon是重试机制，重试时间超过断路器的时间即中止
+            timeoutInMilliseconds: 270000 # 熔断时间, 断路器的超时时间需要大于ribbon的超时时间，不然不会触发重试, ribbon是重试机制，重试时间超过断路器的时间即中止
           strategy: SEMAPHORE   # THREAD
           semaphore:
             max-semaphores: 5000 #信号量大小
