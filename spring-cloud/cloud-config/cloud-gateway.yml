@@ -5,8 +5,8 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 270000 # 熔断时间, 断路器的超时时间需要大于ribbon的超时时间，不然不会触发重试, ribbon是重试机制，重试时间超过断路器的时间即中止
-          semaphore:
-            maxConcurrentRequests: 10000
+       #   semaphore:
+        #    maxConcurrentRequests: 10000
 ribbon:
   ReadTimeout: 30000 # 请求处理的超时时间
   ConnectTimeout: 30000 # 请求连接的超时时间
@@ -18,15 +18,15 @@ zuul:
   host:
     connect-timeout-millis: 40000 # 连接超时时间
     socket-timeout-millis: 40000 # 超时时间
-    max-total-connections: 10000  #zuul内部路由可以理解为使用一个线程池去发送路由请求，所以我们也需要扩大这个线程池的容量
-    max-per-route-connections: 10000
+    max-total-connections: 1000  #zuul内部路由可以理解为使用一个线程池去发送路由请求，所以我们也需要扩大这个线程池的容量
+    max-per-route-connections: 1000
   retryable: true
   ignoredServices: '*'
   sensitive-headers:
   custom-sensitive-headers: true
   ribbon-isolation-strategy: thread
   semaphore:
-      max-semaphores: 10000  # 默认值,设置默认最大信号量
+      max-semaphores: 5000  # 默认值,设置默认最大信号量
   threadPool:
      useSeparateThreadPools: true
      threadPoolKeyPrefix: zuulgw

@@ -2,17 +2,14 @@ hystrix:
   propagate:
     request-attribute:
       enabled: true
+  threadpool:
+    default:
+      coreSize: 500
   command:
     default:
       execution:
         isolation:
           strategy: THREAD
-  threadpool:
-    default:
-      coreSize: 5000
-      maximumSize: 1000
-      maxQueueSize: -1
-
     # 设置独立的hystrix配置信息
     xmutca-cloud-svca-service:
       execution:
