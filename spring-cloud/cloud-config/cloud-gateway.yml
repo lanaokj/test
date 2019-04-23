@@ -5,6 +5,9 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 270000 # 熔断时间, 断路器的超时时间需要大于ribbon的超时时间，不然不会触发重试, ribbon是重试机制，重试时间超过断路器的时间即中止
+          strategy: SEMAPHORE   # THREAD
+          semaphore:
+            max-semaphores: 5000 #信号量大小
 ribbon:
   ReadTimeout: 30000 # 请求处理的超时时间
   ConnectTimeout: 30000 # 请求连接的超时时间
@@ -43,21 +46,23 @@ zuul:
         - origin
         - url
   routes:
-    cloud-service-auth:
-      path: /auth/**
-    cloud-service-user:
-      path: /user/**
-    cloud-service-sso:
-      path: /sso/**
-      serviceId: cloud-service-user
-    cloud-service-pay:
-      path: /pay/**
-    cloud-service-profit:
-      path: /profit/**
+ #   cloud-service-auth:
+ #     path: /auth/**
+ #   cloud-service-user:
+ #     path: /user/**
+ #   cloud-service-sso:
+ #     path: /sso/**
+ #     serviceId: cloud-service-user
+ #   cloud-service-pay:
+ #     path: /pay/**
+ #   cloud-service-profit:
+ #     path: /profit/**
     cloud-service-order:
       path: /order/**
-    cloud-service-notify:
-      path: /notify/**
+      semaphore:
+        max-semaphores: 5000 #针对单个服务的路由设置最大信号量
+   # cloud-service-notify:
+   #   path: /notify/**
 
 
 system:
