@@ -9,8 +9,8 @@ hystrix:
           strategy: THREAD
   threadpool:
     default:
-      coreSize: 10
-      maximumSize: 10
+      coreSize: 5000
+      maximumSize: 1000
       maxQueueSize: -1
 
     # 设置独立的hystrix配置信息

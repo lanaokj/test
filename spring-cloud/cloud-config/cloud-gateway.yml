@@ -18,6 +18,8 @@ zuul:
   host:
     connect-timeout-millis: 40000 # 连接超时时间
     socket-timeout-millis: 40000 # 超时时间
+    max-total-connections: 10000  #zuul内部路由可以理解为使用一个线程池去发送路由请求，所以我们也需要扩大这个线程池的容量
+    max-per-route-connections: 10000
   retryable: true
   ignoredServices: '*'
   sensitive-headers:
