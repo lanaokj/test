@@ -5,9 +5,6 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 60000 # 熔断时间, 断路器的超时时间需要大于ribbon的超时时间，不然不会触发重试, ribbon是重试机制，重试时间超过断路器的时间即中止
-          strategy: THREAD   # THREAD   SEMAPHORE
-          semaphore:
-            max-semaphores: 5000 #信号量大小
 ribbon:
   ReadTimeout: 5000 # 请求处理的超时时间
   ConnectTimeout: 10000 # 请求连接的超时时间
@@ -43,7 +40,7 @@ zuul:
     repository: REDIS
     behind-proxy: true
     default-policy: #optional - will apply unless specific policy exists
-      limit: 10000 #optional - request number limit per refresh interval window
+      limit: 50000 #optional - request number limit per refresh interval window
      # quota: 1 #optional - request time limit per refresh interval window (in seconds)
       refresh-interval: 60 #default value (in seconds)
       type: #optional
