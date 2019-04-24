@@ -34,19 +34,19 @@ zuul:
         semaphore:
            max-semaphores: 5000
   prefix:
-  ratelimit:
-    key-prefix: cloud-gateway
-    enabled: true
-    repository: REDIS
-    behind-proxy: true
-    default-policy: #optional - will apply unless specific policy exists
-      limit: 100000 #optional - request number limit per refresh interval window
+ # ratelimit:
+  #  key-prefix: cloud-gateway
+ #   enabled: true
+ #   repository: REDIS
+  #  behind-proxy: true
+  #  default-policy: #optional - will apply unless specific policy exists
+   #   limit: 100000 #optional - request number limit per refresh interval window
      # quota: 1 #optional - request time limit per refresh interval window (in seconds)
-      refresh-interval: 60 #default value (in seconds)
-      type: #optional
-        - user
-        - origin
-        - url
+  #    refresh-interval: 60 #default value (in seconds)
+  #    type: #optional
+  #      - user
+  #      - origin
+  #      - url
   routes:
  #   cloud-service-auth:
  #     path: /auth/**
