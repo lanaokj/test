@@ -5,7 +5,7 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 60000 # 熔断时间, 断路器的超时时间需要大于ribbon的超时时间，不然不会触发重试, ribbon是重试机制，重试时间超过断路器的时间即中止
-          strategy: SEMAPHORE   # THREAD
+          strategy: THREAD   # THREAD   SEMAPHORE
           semaphore:
             max-semaphores: 5000 #信号量大小
 ribbon:
@@ -14,14 +14,14 @@ ribbon:
   MaxAutoRetries: 1 #对当前实例的重试次数
   MaxAutoRetriesNextServer: 1 # 切换实例的重试次数
   OkToRetryOnAllOperations: false # 对所有操作请求都进行重试
-  MaxTotalConnections: 5000   #Ribbon允许最大连接数，即所有后端微服务实例请求并发数之和的最大值。
-  MaxConnectionsPerHost: 5000   #单个后端微服务实例能接收的最大请求并发数
+  MaxTotalConnections: 2000   #Ribbon允许最大连接数，即所有后端微服务实例请求并发数之和的最大值。
+  MaxConnectionsPerHost: 2000   #单个后端微服务实例能接收的最大请求并发数
 zuul:
   host:
     connect-timeout-millis: 40000 # 连接超时时间
     socket-timeout-millis: 40000 # 超时时间
-    max-total-connections: 200  #zuul内部路由可以理解为使用一个线程池去发送路由请求，所以我们也需要扩大这个线程池的容量
-    max-per-route-connections: 10
+    max-total-connections: 2000  #zuul内部路由可以理解为使用一个线程池去发送路由请求，所以我们也需要扩大这个线程池的容量
+    max-per-route-connections: 100
   debug:
     request: false
   retryable: true
@@ -29,8 +29,6 @@ zuul:
   sensitive-headers:
   custom-sensitive-headers: true
   ribbon-isolation-strategy: thread
- # semaphore:
-   #   max-semaphores: 5000  # 默认值,设置默认最大信号量
   threadPool:
      useSeparateThreadPools: true
      threadPoolKeyPrefix: zuulgw
@@ -45,7 +43,7 @@ zuul:
     repository: REDIS
     behind-proxy: true
     default-policy: #optional - will apply unless specific policy exists
-      limit: 100000 #optional - request number limit per refresh interval window
+      limit: 10000 #optional - request number limit per refresh interval window
      # quota: 1 #optional - request time limit per refresh interval window (in seconds)
       refresh-interval: 60 #default value (in seconds)
       type: #optional
@@ -76,4 +74,4 @@ system:
   openProp:
     timeFrame: 120
   token:
-    ignorePath: /**/api/**, /sso/login/**, /**/open/**, /**/share/**, /ticket/**, /payment/login/**, /**/swagger-ui.html, /**/webjars/**, /**/v2/api-docs/**, /**/swagger-resources/**
+    ignorePath: /**/api/**  #, /sso/login/**, /**/open/**, /**/share/**, /ticket/**, /payment/login/**, /**/swagger-ui.html, /**/webjars/**, /**/v2/api-docs/**, /**/swagger-resources/**
