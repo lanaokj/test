@@ -61,7 +61,7 @@ spring:
 # tomcat调优参数
 server:
   tomcat:
-    max-threads: 128 # Maximum amount of worker threads.
+    max-threads: 1000 # Maximum amount of worker threads.
     min-spare-threads: 64 # Minimum amount of worker threads
 
 # hystrix如果不打开，可能连hystrix面板都看不到， compression开启gzip压缩
