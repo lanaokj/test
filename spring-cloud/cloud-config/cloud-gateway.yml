@@ -9,10 +9,10 @@ ribbon:
   ReadTimeout: 30000 # 请求处理的超时时间
   ConnectTimeout: 30000 # 请求连接的超时时间
   MaxAutoRetries: 1 #对当前实例的重试次数
-  MaxAutoRetriesNextServer: 5 # 切换实例的重试次数
-  OkToRetryOnAllOperations: true # 对所有操作请求都进行重试
-  MaxTotalConnections: 2000   #Ribbon允许最大连接数，即所有后端微服务实例请求并发数之和的最大值。
-  MaxConnectionsPerHost: 2000   #单个后端微服务实例能接收的最大请求并发数
+  MaxAutoRetriesNextServer: 10 # 切换实例的重试次数
+  OkToRetryOnAllOperations: false # 对所有操作请求都进行重试
+  MaxTotalConnections: 5000   #Ribbon允许最大连接数，即所有后端微服务实例请求并发数之和的最大值。
+  MaxConnectionsPerHost: 5000   #单个后端微服务实例能接收的最大请求并发数
   eager-load:
     enabled: true
     clients: cloud-service-order
@@ -24,7 +24,7 @@ zuul:
     max-per-route-connections: 1000
   debug:
     request: false
-  retryable: true  #重试机制开关
+  #retryable: true  #重试机制开关
   ignoredServices: '*'
   sensitive-headers:
   custom-sensitive-headers: true
@@ -66,6 +66,7 @@ zuul:
       path: /order/**
       semaphore:
         max-semaphores: 5000 #针对单个服务的路由设置最大信号量
+      retryable: true  #重试机制开关
    # cloud-service-notify:
    #   path: /notify/**
 

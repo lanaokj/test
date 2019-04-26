@@ -4,10 +4,10 @@ hystrix:
       enabled: true
   threadpool:
     default:
-      coreSize: 5000 #生产环境建议线程池（默认是 10 个线程）不要设置过大，否则大量堵塞线程有可能会拖慢服务器
-      maxQueueSize: 10000
-      maxConcurrentRequests: 7000
-      maximumSize: 10000
+      coreSize: 500 #生产环境建议线程池（默认是 10 个线程）不要设置过大，否则大量堵塞线程有可能会拖慢服务器
+      maxQueueSize: 1000
+      maxConcurrentRequests: 700
+      maximumSize: 1000
   command:
     # 设置独立的hystrix配置信息
     xmutca-cloud-svca-service:
@@ -22,7 +22,7 @@ ribbon:
   ConnectTimeout: 30000 # 请求连接的超时时间
   MaxAutoRetries: 1 #对当前实例的重试次数
   MaxAutoRetriesNextServer: 5 # 切换实例的重试次数
-  OkToRetryOnAllOperations: true # 对所有操作请求都进行重试， 意思是只会对get方法进行重试
+  OkToRetryOnAllOperations: false # 对所有操作请求都进行重试， 意思是只会对get方法进行重试
 
 # 设置独立ribbon的配置信息
 xmutca-cloud-svca-service:
@@ -31,7 +31,7 @@ xmutca-cloud-svca-service:
     ConnectTimeout: 30000 # 请求连接的超时时间
     MaxAutoRetries: 1 #对当前实例的重试次数
     MaxAutoRetriesNextServer: 5 # 切换实例的重试次数
-    OkToRetryOnAllOperations: true # 对所有操作请求都进行重试
+    OkToRetryOnAllOperations: false # 对所有操作请求都进行重试
     # listOfServers: # 特定的服务器列表
 
 spring:
