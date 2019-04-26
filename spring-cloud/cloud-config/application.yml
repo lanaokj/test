@@ -4,10 +4,10 @@ hystrix:
       enabled: true
   threadpool:
     default:
-      coreSize: 200 #生产环境建议线程池（默认是 10 个线程）不要设置过大，否则大量堵塞线程有可能会拖慢服务器
-      maxQueueSize: 400
-      maxConcurrentRequests: 300
-      maximumSize: 200
+      coreSize: 5000 #生产环境建议线程池（默认是 10 个线程）不要设置过大，否则大量堵塞线程有可能会拖慢服务器
+      maxQueueSize: 10000
+      maxConcurrentRequests: 7000
+      maximumSize: 10000
   command:
     # 设置独立的hystrix配置信息
     xmutca-cloud-svca-service:
