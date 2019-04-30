@@ -58,8 +58,8 @@ zuul:
  #   cloud-service-sso:
  #     path: /sso/**
  #     serviceId: cloud-service-user
- #   cloud-service-pay:
- #     path: /pay/**
+    cloud-service-pay:
+      path: /pay/**
  #   cloud-service-profit:
  #     path: /profit/**
     cloud-service-order:
