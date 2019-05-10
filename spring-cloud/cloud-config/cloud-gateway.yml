@@ -4,7 +4,7 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 270000 # 熔断时间, 断路器的超时时间需要大于ribbon的超时时间，不然不会触发重试, ribbon是重试机制，重试时间超过断路器的时间即中止
+            timeoutInMilliseconds: 800000 # 熔断时间, 断路器的超时时间需要大于ribbon的超时时间，不然不会触发重试, ribbon是重试机制，重试时间超过断路器的时间即中止
 ribbon:
   ReadTimeout: 30000 # 请求处理的超时时间
   ConnectTimeout: 30000 # 请求连接的超时时间
