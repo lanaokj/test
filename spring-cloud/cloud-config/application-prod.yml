@@ -4,7 +4,7 @@ swagger:
 
 spring:
   rabbitmq:
-    host: 192.168.1.55
+    host: 192.168.1.179
     port: 5672
     username: user
     password: password
