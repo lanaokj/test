@@ -53,13 +53,13 @@ zuul:
   routes:
  #   cloud-service-auth:
  #     path: /auth/**
- #   cloud-service-user:
- #     path: /user/**
+    cloud-service-user:
+      path: /user/**
  #   cloud-service-sso:
  #     path: /sso/**
  #     serviceId: cloud-service-user
-    cloud-service-pay:
-      path: /pay/**
+    cloud-service-activites:
+      path: /activites/**
  #   cloud-service-profit:
  #     path: /profit/**
     cloud-service-order:
