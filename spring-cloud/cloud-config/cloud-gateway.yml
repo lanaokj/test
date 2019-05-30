@@ -4,10 +4,12 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 60000 # 熔断时间, 断路器的超时时间需要大于ribbon的超时时间，不然不会触发重试, ribbon是重试机制，重试时间超过断路器的时间即中止
+            timeoutInMilliseconds: 1340000 # 熔断时间, 断路器的超时时间需要大于ribbon的超时时间，不然不会触发重试, ribbon是重试机制，重试时间超过断路器的时间即中止
+# ribbonTimeout = (ribbonReadTimeout + ribbonConnectTimeout) * (maxAutoRetries + 1) * (maxAutoRetriesNextServer + 1); } return ribbonTimeout; }
+#  (1000+1000)*(10+1)*(5+1)
 ribbon:
-  ReadTimeout: 1000 # 请求处理的超时时间    264000
-  ConnectTimeout: 1000 # 请求连接的超时时间
+  ReadTimeout: 6000 # 请求处理的超时时间    264000
+  ConnectTimeout: 6000 # 请求连接的超时时间
   MaxAutoRetries: 10 #对当前实例的重试次数
   MaxAutoRetriesNextServer: 5 # 切换实例的重试次数
   OkToRetryOnAllOperations: true # 对所有操作请求都进行重试
@@ -22,6 +24,7 @@ zuul:
     socket-timeout-millis: 1000 # 超时时间
     max-total-connections: 5000  #zuul内部路由可以理解为使用一个线程池去发送路由请求，所以我们也需要扩大这个线程池的容量
     max-per-route-connections: 1000
+  #  MaxTotalHttpConnections: 1000000     #最大http连接数
   debug:
     request: false
   #retryable: true  #重试机制开关
@@ -53,22 +56,17 @@ zuul:
   routes:
  #   cloud-service-auth:
  #     path: /auth/**
+  #   cloud-service-profit:
+  #     path: /profit/**
     cloud-service-user:
       path: /user/**
- #   cloud-service-sso:
- #     path: /sso/**
- #     serviceId: cloud-service-user
     cloud-service-activities:
       path: /activities/**
- #   cloud-service-profit:
- #     path: /profit/**
     cloud-service-order:
       path: /order/**
       semaphore:
         max-semaphores: 5000 #针对单个服务的路由设置最大信号量
       retryable: true  #重试机制开关
-   # cloud-service-notify:
-   #   path: /notify/**
 
 
 system:
