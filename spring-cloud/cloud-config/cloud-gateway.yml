@@ -18,6 +18,10 @@ ribbon:
   eager-load:
     enabled: true
     clients: cloud-service-order
+fallback:
+  isolation:
+     semaphore:
+        maxConcurrentRequests: 5000
 zuul:
   host:
     connect-timeout-millis: 1000 # 连接超时时间
