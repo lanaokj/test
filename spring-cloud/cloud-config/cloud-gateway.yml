@@ -2,9 +2,11 @@ hystrix:
   command:
     default:
       execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 1320000 # 熔断时间, 断路器的超时时间需要大于ribbon的超时时间，不然不会触发重试, ribbon是重试机制，重试时间超过断路器的时间即中止
+        timeout:
+           enabled: false
+       # isolation:
+       #   thread:
+       #     timeoutInMilliseconds: 1320000 # 熔断时间, 断路器的超时时间需要大于ribbon的超时时间，不然不会触发重试, ribbon是重试机制，重试时间超过断路器的时间即中止
 # ribbonTimeout = (ribbonReadTimeout + ribbonConnectTimeout) * (maxAutoRetries + 1) * (maxAutoRetriesNextServer + 1); } return ribbonTimeout; }
 #  (1000+1000)*(10+1)*(5+1)
 ribbon:
@@ -26,8 +28,8 @@ zuul:
   host:
     connect-timeout-millis: 6000 # 连接超时时间
     socket-timeout-millis: 6000 # 超时时间
-    max-total-connections: 5000  #zuul内部路由可以理解为使用一个线程池去发送路由请求，所以我们也需要扩大这个线程池的容量
-    max-per-route-connections: 1000
+    max-total-connections: 10000  #zuul内部路由可以理解为使用一个线程池去发送路由请求，所以我们也需要扩大这个线程池的容量
+    max-per-route-connections: 5000
   #  MaxTotalHttpConnections: 1000000     #最大http连接数
   debug:
     request: false
