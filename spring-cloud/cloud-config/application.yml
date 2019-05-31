@@ -14,7 +14,7 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 1320000 # 用来设置thread和semaphore两种隔离策略的超时时间，默认值是1000
+            timeoutInMilliseconds: 120000 # 用来设置thread和semaphore两种隔离策略的超时时间，默认值是1000
 
 # 全局的设置ribbon的信息
 ribbon:
