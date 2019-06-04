@@ -4,11 +4,11 @@ hystrix:
       enabled: true
   threadpool:
     default:
-      coreSize: 500 #生产环境建议线程池（默认是 10 个线程）不要设置过大，否则大量堵塞线程有可能会拖慢服务器
-      maxQueueSize: 1000
-      queueSizeRejectionThreshold: 800
+      coreSize: 5000 #生产环境建议线程池（默认是 10 个线程）不要设置过大，否则大量堵塞线程有可能会拖慢服务器
+      maxQueueSize: 5500
+      queueSizeRejectionThreshold: 5000
      # maxConcurrentRequests: 1000
-      maximumSize: 1000   #设置最大线程池大小
+      maximumSize: 6000   #设置最大线程池大小
  # command:
     # 设置独立的hystrix配置信息
    # xmutca-cloud-svca-service:
@@ -62,8 +62,8 @@ spring:
 # tomcat调优参数
 server:
   tomcat:
-    max-threads: 5000 # Maximum amount of worker threads.
-    min-spare-threads: 64 # Minimum amount of worker threads
+    max-threads: 6000 # Maximum amount of worker threads.
+    min-spare-threads: 5000 # Minimum amount of worker threads
 
 # hystrix如果不打开，可能连hystrix面板都看不到， compression开启gzip压缩
 feign:
