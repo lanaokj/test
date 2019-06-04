@@ -4,9 +4,9 @@ hystrix:
       enabled: true
   threadpool:
     default:
-      coreSize: 3000 #生产环境建议线程池（默认是 10 个线程）不要设置过大，否则大量堵塞线程有可能会拖慢服务器
-      maxQueueSize: 5000
-      queueSizeRejectionThreshold: 4000
+      coreSize: 200 #生产环境建议线程池（默认是 10 个线程）不要设置过大，否则大量堵塞线程有可能会拖慢服务器
+      maxQueueSize: 1000
+      queueSizeRejectionThreshold: 800
      # maxConcurrentRequests: 1000
       maximumSize: 5000   #设置最大线程池大小
  # command:
@@ -18,12 +18,12 @@ hystrix:
      #       timeoutInMilliseconds: 60000 # 用来设置thread和semaphore两种隔离策略的超时时间，默认值是1000
 
 # 全局的设置ribbon的信息
-#ribbon:
- # ReadTimeout: 2000 # 请求处理的超时时间
- # ConnectTimeout: 2000 # 请求连接的超时时间
- # MaxAutoRetries: 0 #对当前实例的重试次数
-#  MaxAutoRetriesNextServer: 0 # 切换实例的重试次数
-#  OkToRetryOnAllOperations: false # 对所有操作请求都进行重试， 意思是只会对get方法进行重试
+ribbon:
+  ReadTimeout: 100 # 请求处理的超时时间
+  ConnectTimeout: 100 # 请求连接的超时时间
+  MaxAutoRetries: 1 #对当前实例的重试次数
+  MaxAutoRetriesNextServer: 1 # 切换实例的重试次数
+  OkToRetryOnAllOperations: false # 对所有操作请求都进行重试， 意思是只会对get方法进行重试
 
 # 设置独立ribbon的配置信息
 #xmutca-cloud-svca-service:
