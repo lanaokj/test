@@ -4,11 +4,11 @@ hystrix:
       enabled: true
   threadpool:
     default:
-      coreSize: 5000 #生产环境建议线程池（默认是 10 个线程）不要设置过大，否则大量堵塞线程有可能会拖慢服务器
-      maxQueueSize: 5500
-      queueSizeRejectionThreshold: 5000
+      coreSize: 500 #生产环境建议线程池（默认是 10 个线程）不要设置过大，否则大量堵塞线程有可能会拖慢服务器
+      maxQueueSize: 1000
+      queueSizeRejectionThreshold: 800
      # maxConcurrentRequests: 1000
-      maximumSize: 6000   #设置最大线程池大小
+      maximumSize: 1000   #设置最大线程池大小
  # command:
     # 设置独立的hystrix配置信息
    # xmutca-cloud-svca-service:
@@ -19,8 +19,8 @@ hystrix:
 
 # 全局的设置ribbon的信息
 ribbon:
-  ReadTimeout: 1000 # 请求处理的超时时间
-  ConnectTimeout: 1000 # 请求连接的超时时间
+  ReadTimeout: 300 # 请求处理的超时时间
+  ConnectTimeout: 300 # 请求连接的超时时间
   MaxAutoRetries: 1 #对当前实例的重试次数
   MaxAutoRetriesNextServer: 5 # 切换实例的重试次数
   OkToRetryOnAllOperations: false # 对所有操作请求都进行重试， 意思是只会对get方法进行重试
