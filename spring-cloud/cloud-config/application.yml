@@ -8,7 +8,7 @@ hystrix:
       maxQueueSize: 5000
       queueSizeRejectionThreshold: 4000
      # maxConcurrentRequests: 1000
-      maximumSize: 1000   #设置最大线程池大小
+      maximumSize: 5000   #设置最大线程池大小
  # command:
     # 设置独立的hystrix配置信息
    # xmutca-cloud-svca-service:
