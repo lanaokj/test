@@ -5,7 +5,7 @@ hystrix:
   threadpool:
     default:
       #该参数用来设置执行命令线程池的核心线程数，该值也是命令执行的最大并发量
-      coreSize: 5000 #生产环境建议线程池（默认是 10 个线程）不要设置过大，否则大量堵塞线程有可能会拖慢服务器
+      coreSize: 500 #生产环境建议线程池（默认是 10 个线程）不要设置过大，否则大量堵塞线程有可能会拖慢服务器
       maxQueueSize: -1
      # queueSizeRejectionThreshold: 5000
      # maxConcurrentRequests: 1000
