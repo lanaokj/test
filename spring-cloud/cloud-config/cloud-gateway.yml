@@ -90,4 +90,4 @@ system:
   openProp:
     timeFrame: 120
   token:
-    ignorePath: /**/api/**,/management/**,/sso/login/**, /**/open/**, /**/share/**, /ticket/**, /payment/login/**, /**/swagger-ui.html, /**/webjars/**, /**/v2/api-docs/**, /**/swagger-resources/**
+    ignorePath: /**/api/**  #,/sso/login/**, /**/open/**, /**/share/**, /ticket/**, /payment/login/**, /**/swagger-ui.html, /**/webjars/**, /**/v2/api-docs/**, /**/swagger-resources/**
