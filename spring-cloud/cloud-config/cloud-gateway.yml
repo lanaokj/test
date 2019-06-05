@@ -11,23 +11,14 @@ hystrix:
 ribbon:
   ReadTimeout: 3000 # 请求处理的超时时间
   ConnectTimeout: 3000 # 请求连接的超时时间
-  MaxAutoRetries: 0 #对当前实例的重试次数
+  MaxAutoRetries: 1 #对当前实例的重试次数
   MaxAutoRetriesNextServer: 1 # 切换实例的重试次数
-  OkToRetryOnAllOperations: false # 对所有操作请求都进行重试
+  OkToRetryOnAllOperations: true # 对所有操作请求都进行重试
   MaxTotalConnections: 5000   #Ribbon允许最大连接数，即所有后端微服务实例请求并发数之和的最大值。
   MaxConnectionsPerHost: 5000   #单个后端微服务实例能接收的最大请求并发数
   eager-load:
     enabled: true
     clients: cloud-service-order
-
-# 设置独立ribbon的配置信息
-cloud-service-order:
-  ribbon:
-    ReadTimeout: 3000 # 请求处理的超时时间
-    ConnectTimeout: 3000 # 请求连接的超时时间
-    MaxAutoRetries: 0 #对当前实例的重试次数
-    MaxAutoRetriesNextServer: 1 # 切换实例的重试次数
-    OkToRetryOnAllOperations: false # 对所有操作请求都进行重试
 
 fallback:
   isolation:
@@ -39,7 +30,6 @@ zuul:
     socket-timeout-millis: 3000 # 超时时间
     max-total-connections: 5000  #zuul内部路由可以理解为使用一个线程池去发送路由请求，所以我们也需要扩大这个线程池的容量
     max-per-route-connections: 5000
-  #  MaxTotalHttpConnections: 1000000     #最大http连接数
   debug:
     request: false
   #retryable: true  #重试机制开关
