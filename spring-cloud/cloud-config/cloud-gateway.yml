@@ -62,9 +62,9 @@ zuul:
   prefix:
   ratelimit:
     key-prefix: cloud-gateway
-    enabled: true
+    enabled: false
     repository: REDIS
-    behind-proxy: true
+    behind-proxy: false
     default-policy: #optional - will apply unless specific policy exists
       limit: 1000000 #optional - request number limit per refresh interval window
      # quota: 1 #optional - request time limit per refresh interval window (in seconds)
