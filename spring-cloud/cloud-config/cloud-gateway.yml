@@ -12,11 +12,11 @@ hystrix:
   threadpool:
     default:
       #该参数用来设置执行命令线程池的核心线程数，该值也是命令执行的最大并发量
-      coreSize: 5000 #生产环境建议线程池（默认是 10 个线程）不要设置过大，否则大量堵塞线程有可能会拖慢服务器
+      coreSize: 100 #生产环境建议线程池（默认是 10 个线程）不要设置过大，否则大量堵塞线程有可能会拖慢服务器
       maxQueueSize: -1
      # queueSizeRejectionThreshold: 5000
      # maxConcurrentRequests: 1000
-      maximumSize: 10000   #该参数用来设置线程池的最大队列大小
+      maximumSize: 1000   #该参数用来设置线程池的最大队列大小
       allowMaximumSizeToDivergeFromCoreSize: true
 # ribbonTimeout = (ribbonReadTimeout + ribbonConnectTimeout) * (maxAutoRetries + 1) * (maxAutoRetriesNextServer + 1); } return ribbonTimeout; }
 #  (1000+1000)*(10+1)*(5+1)
@@ -36,8 +36,8 @@ ribbon:
 # tomcat调优参数
 server:
   tomcat:
-    max-threads: 6000 # Maximum amount of worker threads.
-    min-spare-threads: 5000 # Minimum amount of worker threads
+    max-threads: 500 # Maximum amount of worker threads.
+    min-spare-threads: 128 # Minimum amount of worker threads
 
 fallback:
   isolation:
@@ -45,8 +45,8 @@ fallback:
         maxConcurrentRequests: 5000
 zuul:
   host:
-    connect-timeout-millis: 10000 # 连接超时时间
-    socket-timeout-millis: 60000 # 超时时间
+    connect-timeout-millis: 1000 # 连接超时时间
+    socket-timeout-millis: 3000 # 超时时间
     max-total-connections: 500000  #zuul内部路由可以理解为使用一个线程池去发送路由请求，所以我们也需要扩大这个线程池的容量
     max-per-route-connections: 500000
   debug:
@@ -78,10 +78,10 @@ zuul:
  #     path: /auth/**
   #   cloud-service-profit:
   #     path: /profit/**
-    cloud-service-user:
-      path: /user/**
-    cloud-service-activities:
-      path: /activities/**
+  #  cloud-service-user:
+   #   path: /user/**
+   # cloud-service-activities:
+   #   path: /activities/**
     cloud-service-order:
       path: /order/**
 
