@@ -5,6 +5,19 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 60000 # 熔断时间, 断路器的超时时间需要大于ribbon的超时时间，不然不会触发重试, ribbon是重试机制，重试时间超过断路器的时间即中止
+
+  propagate:
+    request-attribute:
+      enabled: true
+  threadpool:
+    default:
+      #该参数用来设置执行命令线程池的核心线程数，该值也是命令执行的最大并发量
+      coreSize: 5000 #生产环境建议线程池（默认是 10 个线程）不要设置过大，否则大量堵塞线程有可能会拖慢服务器
+      maxQueueSize: -1
+     # queueSizeRejectionThreshold: 5000
+     # maxConcurrentRequests: 1000
+      maximumSize: 10000   #该参数用来设置线程池的最大队列大小
+      allowMaximumSizeToDivergeFromCoreSize: true
 # ribbonTimeout = (ribbonReadTimeout + ribbonConnectTimeout) * (maxAutoRetries + 1) * (maxAutoRetriesNextServer + 1); } return ribbonTimeout; }
 #  (1000+1000)*(10+1)*(5+1)
 # 全局的设置ribbon的信息
@@ -19,6 +32,12 @@ ribbon:
   eager-load:
     enabled: true
     clients: cloud-service-order
+
+# tomcat调优参数
+server:
+  tomcat:
+    max-threads: 6000 # Maximum amount of worker threads.
+    min-spare-threads: 5000 # Minimum amount of worker threads
 
 fallback:
   isolation:
