@@ -9,8 +9,8 @@ hystrix:
 #  (1000+1000)*(10+1)*(5+1)
 # 全局的设置ribbon的信息
 ribbon:
-  ReadTimeout: 6000 # 请求处理的超时时间
-  ConnectTimeout: 6000 # 请求连接的超时时间
+  ReadTimeout: 300 # 请求处理的超时时间
+  ConnectTimeout: 300 # 请求连接的超时时间
   MaxAutoRetries: 0 #对当前实例的重试次数
   MaxAutoRetriesNextServer: 1 # 切换实例的重试次数
   OkToRetryOnAllOperations: false # 对所有操作请求都进行重试
@@ -23,8 +23,8 @@ ribbon:
 # 设置独立ribbon的配置信息
 cloud-service-order:
   ribbon:
-    ReadTimeout: 6000 # 请求处理的超时时间
-    ConnectTimeout: 6000 # 请求连接的超时时间
+    ReadTimeout: 300 # 请求处理的超时时间
+    ConnectTimeout: 300 # 请求连接的超时时间
     MaxAutoRetries: 0 #对当前实例的重试次数
     MaxAutoRetriesNextServer: 1 # 切换实例的重试次数
     OkToRetryOnAllOperations: false # 对所有操作请求都进行重试
@@ -35,8 +35,8 @@ fallback:
         maxConcurrentRequests: 5000
 zuul:
   host:
-    connect-timeout-millis: 6000 # 连接超时时间
-    socket-timeout-millis: 6000 # 超时时间
+    connect-timeout-millis: 300 # 连接超时时间
+    socket-timeout-millis: 300 # 超时时间
     max-total-connections: 5000  #zuul内部路由可以理解为使用一个线程池去发送路由请求，所以我们也需要扩大这个线程池的容量
     max-per-route-connections: 5000
   #  MaxTotalHttpConnections: 1000000     #最大http连接数
