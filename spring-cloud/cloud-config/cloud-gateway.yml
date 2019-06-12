@@ -12,7 +12,7 @@ hystrix:
   threadpool:
     default:
       #该参数用来设置执行命令线程池的核心线程数，该值也是命令执行的最大并发量
-      coreSize: 100 #生产环境建议线程池（默认是 10 个线程）不要设置过大，否则大量堵塞线程有可能会拖慢服务器
+      coreSize: 500 #生产环境建议线程池（默认是 10 个线程）不要设置过大，否则大量堵塞线程有可能会拖慢服务器
       maxQueueSize: -1
      # queueSizeRejectionThreshold: 5000
      # maxConcurrentRequests: 1000
@@ -22,7 +22,7 @@ hystrix:
 #  (1000+1000)*(10+1)*(5+1)
 # 全局的设置ribbon的信息
 ribbon:
-  ReadTimeout: 1000 # 请求处理的超时时间
+  ReadTimeout: 3000 # 请求处理的超时时间
   ConnectTimeout: 3000 # 请求连接的超时时间
   MaxAutoRetries: 1 #对当前实例的重试次数
   MaxAutoRetriesNextServer: 5 # 切换实例的重试次数
@@ -45,7 +45,7 @@ fallback:
         maxConcurrentRequests: 5000
 zuul:
   host:
-    connect-timeout-millis: 1000 # 连接超时时间
+    connect-timeout-millis: 3000 # 连接超时时间
     socket-timeout-millis: 3000 # 超时时间
     max-total-connections: 500000  #zuul内部路由可以理解为使用一个线程池去发送路由请求，所以我们也需要扩大这个线程池的容量
     max-per-route-connections: 500000
