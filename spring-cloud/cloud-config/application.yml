@@ -85,10 +85,6 @@ feign:
 
 # 系统配置
 system:
-  sequence:
-    workerId: 0 # id, 0 - 31
-    dataCenterId: 0 # ID, 0 - 31
-    enabled: true
   token:
     signHeader: X-Open-Sign
     merchantHeader: X-Open-Merchant
