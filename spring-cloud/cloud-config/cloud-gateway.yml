@@ -78,8 +78,8 @@ zuul:
  #     path: /auth/**
   #   cloud-service-profit:
   #     path: /profit/**
-  #  cloud-service-user:
-   #   path: /user/**
+    cloud-service-user:
+      path: /user/**
     cloud-service-good:
       path: /good/**
     cloud-service-order:
